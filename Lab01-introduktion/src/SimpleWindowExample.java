@@ -8,5 +8,6 @@ public class SimpleWindowExample {
 		w.lineTo(150, 100);
 		w.lineTo(150, 150);
 		w.lineTo(100, 100);
+		w.lineTo(200, 200);
 	}
 }
