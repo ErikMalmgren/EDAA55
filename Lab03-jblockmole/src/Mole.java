@@ -23,7 +23,7 @@ public class Mole {
 			g.block(x, y, Colors.MOLE);
 			char key = g.waitForKey();
 			if (key == 'w') {
-				if (y == 14) {
+				if (y == 14) {					// kolla om mullvaden når himmeln
 					g.block(x, y, Colors.MOLE);
 				} else {
 					g.block(x, y, Colors.TUNNEL);
