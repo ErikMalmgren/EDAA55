@@ -74,6 +74,8 @@ public class Mole {
 				}
 
 			}
+			/* Det hade varit smart att bara ändra kordinaterna i if satsen och sedan i botten av metoden rita ut g.block. Då hade man även kunnat på ett lättare sätt
+			 * ange kordinatgränserna */
 
 		}
 	}
