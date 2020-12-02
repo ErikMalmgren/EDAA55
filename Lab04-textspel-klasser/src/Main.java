@@ -10,21 +10,31 @@ public class Main {
 	}
 
 	public void spel() {
-		System.out.println("Skriv in två siffror");
+		System.out.println("Skriv in två tal");
 		Scanner scan = new Scanner(System.in);
 		int nbr1 = scan.nextInt();
 		int nbr2 = scan.nextInt();
-		System.out.println("Hur många gissnings försök?");
-		int diff = scan.nextInt();
-		int slumpTal = s.getRand(nbr1, nbr2);
-		// System.out.println(slumpTal);
-		for (int i = 0; i < diff; i++) {
 
-			System.out.println(diff - i + " Försök kvar");
+		if (nbr2 < nbr1) {
+			int fix = nbr1;
+			nbr1 = nbr2;
+			nbr2 = fix;
+		}
+		int slumpTal = s.getRand(nbr1, nbr2);
+		
+		System.out.println("Hur många gissnings försök?");
+		int giss = scan.nextInt();
+
+		// System.out.println(slumpTal);
+
+		long start = System.currentTimeMillis();
+		for (int i = 0; i < giss; i++) {
+
+			System.out.println(giss - i + " Försök kvar");
 			int nbr3 = scan.nextInt();
 
 			if (nbr3 == slumpTal) {
-				i = diff;
+				i = giss;
 				System.out.println("Grattis du gissade rätt");
 
 			} else if (nbr3 < slumpTal) {
@@ -34,8 +44,16 @@ public class Main {
 				System.out.println("Din gissning är för hög");
 
 			}
+			if (i == giss - 1) {
+				System.out.println("Du klarade tyvärr inte det");
+			}
 
 		}
-		System.out.println("Du klarade tyvärr inte det");
+
+		long end = System.currentTimeMillis();
+		long elapsed = end - start;
+		double elapsedDouble = s.toSecDouble(elapsed);
+		
+		System.out.println("Det tog " + elapsedDouble + "s");
 	}
 }
