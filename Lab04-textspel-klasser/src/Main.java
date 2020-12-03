@@ -10,6 +10,7 @@ public class Main {
 	}
 
 	public void spel() {
+		System.out.println("Spelet går ut på att gissa ett slumpat tal mellan två andra tal");
 		System.out.println("Skriv in två tal");
 		Scanner scan = new Scanner(System.in);
 		int nbr1 = scan.nextInt();
