@@ -28,3 +28,14 @@ public class TvåTusenSteg {
 
 	}
 }
+
+
+/*
+Attribut: Class variabler, finns i turtle
+Parameter: Det man matar in i metoder
+Lokal variabel: Finns i metoder, ex jumpTo
+
+
+
+
+*/
