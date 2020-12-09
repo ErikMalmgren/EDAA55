@@ -23,7 +23,7 @@ public class Main {
 		}
 		int slumpTal = s.getRand(nbr1, nbr2);
 		
-		System.out.println("Hur många gissnings försök?");
+		System.out.println("Hur många gissningsförsök?");
 		int giss = scan.nextInt();
 
 		// System.out.println(slumpTal);
