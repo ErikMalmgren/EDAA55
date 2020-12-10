@@ -18,10 +18,10 @@ public class TvåTusenSteg {
 			int y2 = t2.getY();
 			dist = Math.sqrt(((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)));
 
-			t1.forward(rand.nextInt(9) + 1);
-			t1.left(rand.nextInt(360) - 180);
-			t2.forward(rand.nextInt(9) + 1);
-			t2.left(rand.nextInt(360) - 180);
+			t1.forward(rand.nextInt(10) + 1); 		//Detta hade kunant göras till en metod
+			t1.left(rand.nextInt(361) - 180);
+			t2.forward(rand.nextInt(10) + 1);
+			t2.left(rand.nextInt(361) - 180);
 
 			SimpleWindow.delay(10);
 		}
@@ -29,13 +29,13 @@ public class TvåTusenSteg {
 	}
 }
 
-
 /*
-Attribut: Class variabler, finns i turtle
-Parameter: Det man matar in i metoder
-Lokal variabel: Finns i metoder, ex jumpTo
-
-
-
-
-*/
+ * Attribut: Class variabler, finns i turtle 
+ * Parameter: Det man matar in i
+ * metoder 
+ * Lokal variabel: Finns i metoder, ex jumpTo
+ * 
+ * 
+ * 
+ * 
+ */

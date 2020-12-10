@@ -5,7 +5,7 @@ public class Turtle {
 	private double v = 90;
 	private double x;
 	private double y;
-	SimpleWindow w;
+	private SimpleWindow w;
 
 	/**
 	 * Skapar en sköldpadda som ritar i ritfönstret w. Från början befinner sig
@@ -31,15 +31,11 @@ public class Turtle {
 
 	/** Går rakt framåt n pixlar i den riktning huvudet pekar. */
 	public void forward(int n) {
+		w.moveTo((int) Math.round(x), (int) Math.round(y));
+		x = x + n * Math.cos(Math.toRadians(v));
+		y = y - n * Math.sin(Math.toRadians(v));
 		if (isPenDown) {
-			w.moveTo((int) x, (int) y);
-			x = x + n * Math.cos(Math.toRadians(v));
-			y = y - n * Math.sin(Math.toRadians(v));
 			w.lineTo((int) Math.round(x), (int) Math.round(y));
-		} else {
-			x = x + n * Math.cos(Math.toRadians(v));
-			y = y - n * Math.sin(Math.toRadians(v));
-			w.moveTo((int) Math.round(x), (int) Math.round(y));
 		}
 
 	}
