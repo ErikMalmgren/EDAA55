@@ -34,8 +34,4 @@ public class TvåTusenSteg {
  * Parameter: Det man matar in i
  * metoder 
  * Lokal variabel: Finns i metoder, ex jumpTo
- * 
- * 
- * 
- * 
  */
