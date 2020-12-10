@@ -16,7 +16,7 @@ public class TvåTusenSteg {
 			int x2 = t2.getX();
 			int y1 = t1.getY();
 			int y2 = t2.getY();
-			dist = Math.sqrt(((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)));
+			dist = Math.sqrt(((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2))); 			//Math.hypo
 
 			t1.forward(rand.nextInt(10) + 1); 		//Detta hade kunant göras till en metod
 			t1.left(rand.nextInt(361) - 180);
