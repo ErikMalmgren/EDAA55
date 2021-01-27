@@ -9,7 +9,7 @@ public class FindBestCandidates {
 	public static void main(String[] args) {
 		// Läs från fil (Börja med "applications_small.txt), spara resultatet i en
 		// vektor
-		Applicant[] applicants = FileReader.readFromFile("applications_all.txt", 231);
+		Applicant[] applicants = FileReader.readFromFile("applications_x.txt", 231);
 		// Skicka in Applicant-vektorn (som du fick i föregående steg) till metoden
 		// findBestCandidiates (nedan)
 		// Spara resultatet i en vektor

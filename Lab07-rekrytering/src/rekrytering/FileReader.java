@@ -45,7 +45,6 @@ public class FileReader {
 			Applicant[] tempApplicants = new Applicant[i];
 			for (int j = 0; j < tempApplicants.length; j++) {
 				tempApplicants[j] = applicants[j];
-				
 			}
 			applicants = tempApplicants;
 		}
