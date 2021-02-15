@@ -2,9 +2,9 @@ package memory;
 import java.util.Random;
 
 public class MemoryBoard {
-	int size;
-	MemoryCardImage[][] deck;
-	boolean[][] isTurned;
+	private int size;
+	private MemoryCardImage[][] deck;
+	private boolean[][] isTurned;
 	
 	
 	
@@ -22,10 +22,7 @@ public class MemoryBoard {
 	/* Skapar size * size / 2 st memorykortbilder.
 	   Placerar ut varje kort på två slumpmässiga ställen på spelplanen. */
 	private void createCards(String backFileName, String[] frontFileNames) {
-		if (size % 2!= 0 || size > frontFileNames.length /2) {
-			System.out.println("Error! Size must be a multiple of 2 and no more than "+ frontFileNames.length /2);
-		}
-		
+
 		for ( int i = 0; i < ((size*size)/2); i++) {
 			MemoryCardImage card = new MemoryCardImage(frontFileNames[i], backFileName);
 			placeCard(card);
