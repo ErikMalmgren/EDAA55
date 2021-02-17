@@ -21,19 +21,19 @@ public class MemoryGame {
 			window.drawBoard();
 			int[] c1 = registerClick(window, board);
 			int[] c2 = registerClick(window, board);
-			
+
 			SimpleWindow.delay(800);
-			
-			if(!board.same(c1[0], c1[1], c2[0], c2[1])) {
+
+			if (!board.same(c1[0], c1[1], c2[0], c2[1])) {
 				board.turnCard(c1[0], c1[1]);
 				board.turnCard(c2[0], c2[1]);
 			}
 			tries++;
 		}
 		window.close();
-		
-		int replay = JOptionPane.showConfirmDialog(null, "Det tog dig " + tries
-				+ " försök att klara memory.\nVill du spela igen?", "Du vann!",
+
+		int replay = JOptionPane.showConfirmDialog(null,
+				"Det tog dig " + tries + " försök att klara memory.\nVill du spela igen?", "Du vann!",
 				JOptionPane.YES_NO_OPTION);
 
 		if (replay == 0) {
