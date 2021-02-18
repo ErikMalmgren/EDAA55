@@ -1,7 +1,7 @@
 import java.util.Random;
 import se.lth.cs.pt.window.SimpleWindow;
 
-public class Tv√•TusenSteg {
+public class TvÂTusenSteg {
 	public static void main(String[] args) {
 		SimpleWindow w = new SimpleWindow(600, 600, "TurtleDrawSquare");
 		Turtle t1 = new Turtle(w, 250, 250);

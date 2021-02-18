@@ -33,7 +33,7 @@ public class MemoryGame {
 		window.close();
 
 		int replay = JOptionPane.showConfirmDialog(null,
-				"Det tog dig " + tries + " fÃ¶rsÃ¶k att klara memory.\nVill du spela igen?", "Du vann!",
+				"Det tog dig " + tries + " försök att klara memory.\nVill du spela igen?", "Du vann!",
 				JOptionPane.YES_NO_OPTION);
 
 		if (replay == 0) {
