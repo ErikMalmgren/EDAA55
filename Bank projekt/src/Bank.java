@@ -19,13 +19,13 @@ public class Bank {
 			holder = new Customer(holderName, idNr);
 		}
 		if (!holder.getName().equals(holderName)) {
-			return -1;  // Får bara finnas en kund med id nr och namn
-			}
+			return -1; // Får bara finnas en kund med id nr och namn
+		}
 
 		BankAccount account = new BankAccount(holder);
 		accounts.add(account);
 		return account.getAccountNumber();
-		
+
 	}
 
 	/**
@@ -41,4 +41,87 @@ public class Bank {
 		}
 		return null;
 	}
+
+	/**
+	 * Tar bort konto med nummer ’number’ från banken. Returnerar true om kontot
+	 * fanns (och kunde tas bort), annars false.
+	 */
+	public boolean removeAccount(int number) {
+		BankAccount accountToRemove = null;
+		for (BankAccount acc : accounts) {
+			if (acc.getAccountNumber() == number) {
+				accountToRemove = acc;
+			}
+		}
+		accounts.remove(accountToRemove);
+		return accountToRemove != null;
+	}
+
+	/**
+	 * Returnerar en lista innehållande samtliga bankkonton i banken. Listan är
+	 * sorterad på kontoinnehavarnas namn.
+	 */
+	public ArrayList<BankAccount> getAllAccounts() { // Sorterings logik?
+		return accounts;
+	}
+
+	/**
+	 * Söker upp och returnerar bankkontot med kontonummer ’accountNumber’.
+	 * Returnerar null om inget sådant konto finns.
+	 */
+	public BankAccount findByNumber(int accountNumber) {
+		for (BankAccount acc : accounts) {
+			if (acc.getAccountNumber() == accountNumber) {
+				return acc;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Söker upp alla bankkonton som innehas av kunden med id-nummer ’idNr’. Kontona
+	 * returneras i en lista. Kunderna antas ha unika id-nummer.
+	 */
+
+	public ArrayList<BankAccount> findAccountsForHolder(long idNr) {
+		ArrayList<BankAccount> accs = new ArrayList<>();
+		for (BankAccount acc : accounts) {
+			if (acc.getHolder().getIdNr() == idNr) {
+				accs.add(acc);
+			}
+		}
+		return accs;
+	}
+
+	/**
+	 * Söker upp kunder utifrån en sökning på namn eller del av namn. Alla personer
+	 * vars namn innehåller strängen ’namePart’ inkluderas i resultatet, som
+	 * returneras som en lista. Samma person kan förekomma flera gånger i
+	 * resultatet. Sökningen är "case insensitive", det vill säga gör ingen skillnad
+	 * på stora och små bokstäver.
+	 */
+	
+	public ArrayList<Customer> findByPartOfName(String namePart){
+		ArrayList<Customer> customers = new ArrayList<>();
+		String name;
+		long id;
+		ArrayList<Long> ids = new ArrayList<Long>();
+		for (BankAccount acc: accounts) {
+			name = acc.getHolder().getName();
+			id = acc.getHolder().getIdNr();
+			
+			//Gör alla bokstäver till versaler
+			if (name.toUpperCase().contains(namePart.toUpperCase()) && !ids.contains(id)) {
+				ids.add(id);
+				customers.add(acc.getHolder());
+			}
+		}
+		return customers;
+		
+		
+		
+		
+		
+	}
+
 }
