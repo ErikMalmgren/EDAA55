@@ -8,14 +8,17 @@ public class BankApplication {
 
 	public static void main(String[] args) {
 		BankApplication app = new BankApplication();
+		app.initialize();
 	}
 
 	private void initialize() {
 		this.bank = new Bank();
 		this.scan = new Scanner(System.in);
 		this.rand = new Random();
-
+		this.seedAccounts();
 		this.run();
+		
+		this.scan.close();
 	}
 
 	private void run() {
@@ -35,8 +38,22 @@ public class BankApplication {
 			this.withdraw();
 			break;
 		case 5: //Överföring
-			
+			this.transfer();
+			break;
+		case 6: //Skapa nytt konto
+			this.createAccount();
+			break;
+		case 7: //Ta bort konto
+			this.deleteAccount();
+			break;
+		case 8: //Printa alla konton
+			this.printAccounts();
+			break;
+		case 9: //Avsluta
+			this._print("Hejdå \n");
+			return;
 		}
+		this.run();
 
 	}
 
@@ -53,9 +70,9 @@ public class BankApplication {
 		}
 		System.out.print("\n");
 
-		for (int i = 0; 1 < menuItems.length; i++) {
-			this._print((i + 1) + ": " + menuItems[i]);
-		}
+		for (int i = 0; i < menuItems.length; i++) {
+            this._print((i + 1) + ": " + menuItems[i]);
+        }
 
 		int selection = this._waitForInputI("val");
 
@@ -108,7 +125,7 @@ public class BankApplication {
 			return;
 		}
 		
-		long amount = this._getAmount(account.getAmount(), false);
+		double amount = this._getAmount(account.getAmount(), false);
 		
 		account.deposit(amount);
 		this._print(account);
@@ -124,7 +141,7 @@ public class BankApplication {
 			this._print("Kontot finns inte");
 			return;
 		}
-		long amount = this._getAmount(account.getAmount(), true);
+		double amount = this._getAmount(account.getAmount(), true);
 
         account.withdraw(amount);
 
@@ -162,6 +179,49 @@ public class BankApplication {
 	}
 	
 	
+	//case 6: Skapa nytt konto
+	
+	private void createAccount() {
+		var name = this._waitForInput("namn");
+
+        long id;
+        try {
+            id = this._waitForInputL("id");
+
+        } catch (Exception e) {
+            // Assign random value
+            id = this.rand.nextInt(Integer.MAX_VALUE);
+            this._print("Kontonummer är ej korrekt, ett slumpmässigt har genererats: " + id);
+        }
+
+        var accountNr = this.bank.addAccount(name, id);
+        this._print("konto skapat: " + accountNr);
+	}
+	
+	//case 7: Ta bort konto
+	
+	private void deleteAccount() {
+        var accountNr = this._waitForInputI("kontonummer");
+
+        if (!this.bank.removeAccount(accountNr)) {
+            this._print("Felaktigt kontonummer!");
+        } else {
+            this._print("Kontot har tagits bort.");
+        }
+
+    }
+	
+	//case 8: Printa alla konton
+	
+	private void printAccounts() {
+        var accs = bank.getAllAccounts();
+
+        if (accs.size() < 1) {
+            this._print("Det finns inga konton");
+            return;
+        }
+        accs.forEach(acc -> this._print(acc));
+    }
 	
 	// Hjälpmetoder
 	
@@ -222,5 +282,19 @@ public class BankApplication {
 		}
 		return amount;
 	}
+	
+	//Testkonton
+	
+	private void seedAccounts() {
+        var firstnames = new String[] { "Lucas", "Liam", "William", "Elias", "Noah", "Hugo", "Oliver", "Oscar", "Adam",
+                "Matteo", };
+        var lastnames = new String[] { "Andersson", "Johansson", "Karlsson", "Nilsson", "Eriksson", "Larsson", "Olsson",
+                "Persson", "Svensson", };
 
+        for (int i = 0; i < 12; i++) {
+            this.bank.addAccount(
+                    firstnames[rand.nextInt(firstnames.length)] + " " + lastnames[rand.nextInt(lastnames.length)],
+                    rand.nextInt(100));
+        }
+    }
 }

@@ -61,8 +61,33 @@ public class Bank {
 	 * Returnerar en lista innehållande samtliga bankkonton i banken. Listan är
 	 * sorterad på kontoinnehavarnas namn.
 	 */
-	public ArrayList<BankAccount> getAllAccounts() { // Sorterings logik?
-		return accounts;
+	public ArrayList<BankAccount> getAllAccounts() {
+		if (this.accounts.size() < 1) {
+            return this.accounts;
+        }
+
+        ArrayList<BankAccount> sorted = new ArrayList<BankAccount>();
+
+        for (BankAccount a : this.accounts) {
+            sorted.add(a);
+        }
+
+        // Loop through array
+        for (int i = 0; i < sorted.size(); i++) {
+            // Start at next item in array
+            for (int j = i + 1; j < sorted.size(); j++) {
+                BankAccount a1 = sorted.get(i);
+                BankAccount a2 = sorted.get(j);
+
+                // Jämför namnen och bytar possition om det behövs
+                if (a1.getHolder().getName().compareToIgnoreCase(a2.getHolder().getName()) > 0) {
+                    sorted.set(i, a2);
+                    sorted.set(j, a1);
+                }
+            }
+        }
+
+        return sorted;
 	}
 
 	/**
