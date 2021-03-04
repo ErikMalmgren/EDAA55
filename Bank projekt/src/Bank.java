@@ -63,31 +63,29 @@ public class Bank {
 	 */
 	public ArrayList<BankAccount> getAllAccounts() {
 		if (this.accounts.size() < 1) {
-            return this.accounts;
-        }
+			return this.accounts;
+		}
 
-        ArrayList<BankAccount> sorted = new ArrayList<BankAccount>();
+		ArrayList<BankAccount> sorted = new ArrayList<BankAccount>();
 
-        for (BankAccount a : this.accounts) {
-            sorted.add(a);
-        }
+		for (BankAccount a : this.accounts) {
+			sorted.add(a);
+		}
 
-        // Loop through array
-        for (int i = 0; i < sorted.size(); i++) {
-            // Start at next item in array
-            for (int j = i + 1; j < sorted.size(); j++) {
-                BankAccount a1 = sorted.get(i);
-                BankAccount a2 = sorted.get(j);
+		for (int i = 0; i < sorted.size(); i++) {
+			for (int j = i + 1; j < sorted.size(); j++) {
+				BankAccount a1 = sorted.get(i);
+				BankAccount a2 = sorted.get(j);
 
-                // Jämför namnen och bytar possition om det behövs
-                if (a1.getHolder().getName().compareToIgnoreCase(a2.getHolder().getName()) > 0) {
-                    sorted.set(i, a2);
-                    sorted.set(j, a1);
-                }
-            }
-        }
+				// Jämför namnen och bytar position om det behövs
+				if (a1.getHolder().getName().compareToIgnoreCase(a2.getHolder().getName()) > 0) {
+					sorted.set(i, a2);
+					sorted.set(j, a1);
+				}
+			}
+		}
 
-        return sorted;
+		return sorted;
 	}
 
 	/**
@@ -125,28 +123,24 @@ public class Bank {
 	 * resultatet. Sökningen är "case insensitive", det vill säga gör ingen skillnad
 	 * på stora och små bokstäver.
 	 */
-	
-	public ArrayList<Customer> findByPartOfName(String namePart){
+
+	public ArrayList<Customer> findByPartOfName(String namePart) {
 		ArrayList<Customer> customers = new ArrayList<>();
 		String name;
 		long id;
 		ArrayList<Long> ids = new ArrayList<Long>();
-		for (BankAccount acc: accounts) {
+		for (BankAccount acc : accounts) {
 			name = acc.getHolder().getName();
 			id = acc.getHolder().getIdNr();
-			
-			//Gör alla bokstäver till versaler
+
+			// Gör alla bokstäver till versaler
 			if (name.toUpperCase().contains(namePart.toUpperCase()) && !ids.contains(id)) {
 				ids.add(id);
 				customers.add(acc.getHolder());
 			}
 		}
 		return customers;
-		
-		
-		
-		
-		
+
 	}
 
 }
